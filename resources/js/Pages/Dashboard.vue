@@ -9,6 +9,9 @@ import { Head } from '@inertiajs/vue3';
     <AuthenticatedLayout>
 
 
+        <img src="Fondo Full HD 01.jpg"
 
+
+      />
     </AuthenticatedLayout>
 </template>

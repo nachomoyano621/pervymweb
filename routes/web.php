@@ -4,8 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PersonaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +30,18 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('departments', DepartmentController::class);
-    Route::resource('employees', EmployeeController::class);
-    Route::get('graphic',[EmployeeController::class,'EmployeeByDepartment'])->name('graphic');
-    Route::get('reports',[EmployeeController::class,'reports'])->name('reports');
+    Route::get('/persona/index/',[PersonaController::class,'index'])->name('persona.index');
+    Route::get('persona/buscardni/',[PersonaController::class,'buscardni'])->name('persona.buscardni');
+    Route::get('/persona/dnivista/',[PersonaController::class,'dnivista'])->name('persona.dnivista');
+    Route::get('/persona/nombrevista/',[PersonaController::class,'nombrevista'])->name('persona.nombrevista');
+    Route::get('persona/buscarnombre/',[PersonaController::class,'buscarnombre'])->name('persona.buscarnombre');
 });
+
 
 require __DIR__.'/auth.php';
